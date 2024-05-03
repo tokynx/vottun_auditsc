@@ -2,7 +2,7 @@ pragma solidity 0.8.20;
 
 // SPDX-License-Identifier: MIT
 
-contract ChainWallet {
+contract PrivateBank {
     mapping(address => uint256) private balances;
 
     function deposit() external payable {
@@ -14,7 +14,7 @@ contract ChainWallet {
 
         require(balance > 0, "Insufficient balance");
 
-        (bool success, ) = msg.sender.call{value: balance}(""); // At this point, the caller's code is executed.
+        (bool success, ) = msg.sender.call{value: balance}("");
         require(success, "Failed to send Ether");
 
         balances[msg.sender] = 0;
