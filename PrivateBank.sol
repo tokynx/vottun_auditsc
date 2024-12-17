@@ -1,7 +1,6 @@
-//1. Reentrancy Attack: The line (bool success, ) = msg.sender.call{value: balance}(""); in the withdraw() function is vulnerable to a reentrancy attack. This is because an attacker could call the withdraw() function recursively before the contract’s balance is set to zero.
-//1. Fix: Update state (balances[msg.sender] = 0) before making the external call to transfer Ether.
-//2. Function Visibility: getUserBalance() is marked as public, but this function is not needed to be public as it is meant to be used internally.
-//2. Fix: Change the visibility to internal or private to restrict unnecessary external access.
+//Audit:
+// 1. Reentrancy Attack: Update state before making external calls in the withdraw() function.
+// 2. Function Visibility: Change the visibility of getUserBalance() to internal or private.
 
 pragma solidity 0.8.20;
 
